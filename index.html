@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>WEBPORTAL SBNP PDAM PURWAKARTA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: bgSlide 18s infinite;
+    color: #fff;
+}
+
+@keyframes bgSlide {
+    0%   { background-image: url('bg1.jpg'); }
+    33%  { background-image: url('bg2.jpg'); }
+    66%  { background-image: url('bg3.jpg'); }
+    100% { background-image: url('bg1.jpg'); }
+}
+
+.overlay {
+    background: rgba(0,0,0,0.55);
+    min-height: 100vh;
+    padding: 20px 14px 40px;
+}
+
+h1 {
+    text-align: center;
+    margin: 18px 0 28px;
+    font-size: clamp(20px, 5vw, 30px);
+    letter-spacing: 1.5px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+#countdown{
+    text-align:center;
+    font-size:clamp(14px,4vw,18px);
+    margin: 0 auto 26px;   /* KUNCI TENGAH */
+    padding:10px 16px;
+    max-width: 520px;     /* Biar rapi di layar lebar */
+    background:rgba(255,193,7,0.18);
+    border:1px solid rgba(255,193,7,0.6);
+    border-radius:12px;
+    color:#ffc107;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+
+
+.menu a {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 18px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: clamp(14px, 4vw, 16px);
+    border-radius: 14px;
+    transition: 0.3s ease;
+    backdrop-filter: blur(6px);
+    line-height: 1.4;
+}
+
+.menu a:hover {
+    background: #ffc107;
+    color: #000;
+    transform: translateY(-4px);
+}
+
+/* Footer Logos */
+.footer {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.footer img {
+    height: clamp(45px, 12vw, 60px);
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.6));
+}
+</style>
+</head>
+
+<body>
+<div class="overlay">
+
+ <h1>PORTAL BARU RDS TANGSEL</h1>
+<div id="countdown">⏳ Menghitung sisa waktu survey...</div>
+
+    <div class="menu">
+        <!-- MENU PALING ATAS -->
+        <a href="https://docs.google.com/spreadsheets/d/1mFbjoXZTweEwHpc1VBCYYG65VsxpJPUuue23sfXM5NQ/edit?usp=sharing">📍 Wilayah Kerja dan Personil</a>
+        <a href="maps.html">🗺️ Buka Peta Kerja</a>
+        <a href="https://ee.kobotoolbox.org/x/cgFqfPw4">📝 Isi Absen</a>
+        <a href="https://kf.kobotoolbox.org/#/forms/anEwLKPee77i8JwDq9ixaL/data/table">✅ Cek Absen Masuk</a>
+        <a href="https://forms.gle/qkoJFVTBmb5sXcdKA">📄 Isi Surat Perizinan</a>
+        <a href="https://docs.google.com/spreadsheets/d/1pjh0T60OAHRnDZzRijT-VTEeJfnoJ1cwA8hlkh_HVUk/edit?gid=815740642#gid=815740642">⬇️ Download Surat Perizinan</a>
+		<a href="https://forms.gle/PdWU2RsjBbx9gjsJ8">isi no telp pejabat setempat</a>
+        <a href="https://forms.gle/WoFtz4V7eiAPp6fMA">⚠️ Isi Laporan Permasalahan</a>
+        <a href="https://docs.google.com/spreadsheets/d/1kNoDRmAxb7ljDhL11h5tZaoG6DS-dXnqh3O7VxdmL4A/edit?usp=sharing"> Cek Laporan Permasalahan</a>
+		<a href="https://webgis.palyja.co.id/portal/apps/dashboards/d4bcf9f9438a417fb361bb3448be3fba">📊 dashboard</a>
+		<a href="pasw.html">ID PASW</a>
+		
+    </div>
+
+    <div class="footer">
+        <img src="logo1.png" alt="Logo 1">
+        <img src="logo2.jpg" alt="Logo 2">
+        <img src="logo3.jpg" alt="Logo 3">
+    </div>
+	
+	<script>
+const countdownEl = document.getElementById("countdown");
+
+/* Target: 15 Maret pukul 24.00 (23:59:59) */
+const targetDate = new Date("2026-06-15T23:59:59").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+        countdownEl.innerHTML = "⛔ Waktu survey telah berakhir";
+        countdownEl.style.color = "#ff5252";
+        countdownEl.style.borderColor = "#ff5252";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    countdownEl.innerHTML =
+        `⏳ Survey berakhir dalam:
+        <b>${days}</b> hari
+        <b>${hours}</b> jam
+        <b>${minutes}</b> menit
+        <b>${seconds}</b> detik`;
+}, 1000);
+</script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal Password Survey ArcGIS 123</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #2980b9, #6dd5fa);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    h1 {
+      margin-top: 40px;
+      font-size: 2em;
+      text-shadow: 1px 1px 3px #000;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 10px;
+      margin-top: 20px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #27ae60;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2ecc71;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Portal <b>ID SURVEYOR</b> untuk penggunaan Survey ArcGIS 123</h1> 
+ <h1> Survey Properti Kota Tangerang Selatan</h1>
+  <div class="container">
+    <form id="sandiForm">
+      <label for="name">Nama Lengkap (cek di database surveyor, Case sensitive):</label>
+      <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap sesuai daftar" required>
+      <label for="password">5 Digit Terakhir NIK:</label>
+      <input type="password" id="password" name="password" placeholder="Contoh: 12345" required>
+      <button type="submit">Tampilkan Sandi</button>
+    </form>
+    <div class="result" id="result"></div>
+    <div class="note">
+      ⚠️ Id surveyor ini bersifat rahasia dan <b>tidak boleh dibagikan</b> kepada siapapun.
+    </div>
+  </div>
+  <script>
+    const dataSurveyor = 
+	
+	
+{
+  "Haryani Setiowati": {
+    "password": "70001",
+    "sandi": "G1v"
+  },
+   "Hendrayana": {
+    "password": "00000",
+    "sandi": "MD9"
+  },
+  "M Qobus Abid": {
+    "password": "81003",
+    "sandi": "KtZ"
+  },
+  "Abbas Musthofa Arief": {
+    "password": "00004",
+    "sandi": "XTN"
+  },
+  "Abdul Aziz Arramadhani": {
+    "password": "20007",
+    "sandi": "C6g"
+  },
+  "Abi Maulidya Nabilah": {
+    "password": "30006",
+    "sandi": "dVc"
+  },
+  "Abiyyura Taqarizka": {
+    "password": "40005",
+    "sandi": "uMO"
+  },
+  "Adhi Rangga Evalianto": {
+    "password": "20013",
+    "sandi": "3RR"
+  },
+  "Adil Hakiky": {
+    "password": "01004",
+    "sandi": "bo0"
+  },
+  "Afrizal Fajar Oktaviano": {
+    "password": "20007",
+    "sandi": "HBQ"
+  },
+  "Ahmad Rizal Ibramsyah": {
+    "password": "20001",
+    "sandi": "AJT"
+  },
+  "Ahmad Tajudin": {
+    "password": "00004",
+    "sandi": "LuI"
+  },
+  "Ahmat Deno Saputera": {
+    "password": "90001",
+    "sandi": "Q2r"
+  },
+  "ALPIAN ROSANDI ISKANDAR": {
+    "password": "70013",
+    "sandi": "ded"
+  },
+  "Anawinta Nurul Asna": {
+    "password": "51003",
+    "sandi": "EtG"
+  },
+  "Andhika bhagaskara": {
+    "password": "00003",
+    "sandi": "4yK"
+  },
+  "Arya Mubarakh": {
+    "password": "30005",
+    "sandi": "BWO"
+  },
+  "Ayu Husnah Kamilah": {
+    "password": "00006",
+    "sandi": "XCi"
+  },
+  "Azhar Bintang Fadhlurrahman": {
+    "password": "30002",
+    "sandi": "AzU"
+  },
+  "Bayu Nugrah Setiawan": {
+    "password": "80001",
+    "sandi": "6py"
+  },
+  "Beefrhanna Arrasy Busyra": {
+    "password": "10009",
+    "sandi": "wFY"
+  },
+  "Dandi Ramadhan": {
+    "password": "30007",
+    "sandi": "9KX"
+  },
+  "Dede Suhendar": {
+    "password": "20002",
+    "sandi": "MIw"
+  },
+  "Demas Angger": {
+    "password": "20009",
+    "sandi": "uLg"
+  },
+  "Dendy Fahru Tri Aditya": {
+    "password": "80003",
+    "sandi": "p4S"
+  },
+  "Deyan Arum Sitaresmi": {
+    "password": "30004",
+    "sandi": "YQb"
+  },
+  "Dimas Amirul Seto": {
+    "password": "00001",
+    "sandi": "HCo"
+  },
+  "Farhan Ramdhhan (Geofisika)": {
+    "password": "80001",
+    "sandi": "z3T"
+  },
+  "Farhan Ramadhan (geografi)": {
+    "password": "00005",
+    "sandi": "ieT"
+  },
+  "Farisan Arisyi": {
+    "password": "30002",
+    "sandi": "9ZE"
+  },
+  "Fazry Dhevio Harsyanutoro": {
+    "password": "40004",
+    "sandi": "COU"
+  },
+  "ibra fabian dwinata": {
+    "password": "30001",
+    "sandi": "vm2"
+  },
+  "Ilham Rahmawan": {
+    "password": "30004",
+    "sandi": "Mfp"
+  },
+  "Indra hadiyanto": {
+    "password": "90003",
+    "sandi": "cJ7"
+  },
+  "Khoirunisa": {
+    "password": "20002",
+    "sandi": "6Ex"
+  },
+  "Lisya Aryanti": {
+    "password": "10010",
+    "sandi": "Qlw"
+  },
+  "Lukita Mulat Sari": {
+    "password": "80003",
+    "sandi": "7dq"
+  },
+  "Lukni Maulana Ihan": {
+    "password": "51002",
+    "sandi": "1R0"
+  },
+  "Luthfi Nur Hasanah": {
+    "password": "20002",
+    "sandi": "hzQ"
+  },
+  "Mahfud Barnawi": {
+    "password": "60003",
+    "sandi": "skP"
+  },
+  "MARGI ALGHAN UTAMI": {
+    "password": "60003",
+    "sandi": "a9K"
+  },
+  "MELLY CHANDRA UTAMI": {
+    "password": "80001",
+    "sandi": "FQV"
+  },
+  "Mochamad Hafiz": {
+    "password": "20005",
+    "sandi": "lBr"
+  },
+  "Mohamad Arif Fajar": {
+    "password": "20005",
+    "sandi": "49e"
+  },
+  "Mohammad Raihan Anugrah Illahi": {
+    "password": "40001",
+    "sandi": "x5Y"
+  },
+  "Muhamad Adil Farhan": {
+    "password": "90004",
+    "sandi": "iIA"
+  },
+  "Muhammad Abror": {
+    "password": "90001",
+    "sandi": "egF"
+  },
+  "Muhammad Bagus Ramadhan": {
+    "password": "90001",
+    "sandi": "QZp"
+  },
+  "Muhammad daffa adelard": {
+    "password": "50001",
+    "sandi": "Ce0"
+  },
+  "Muhammad Fauzi": {
+    "password": "20002",
+    "sandi": "X9c"
+  },
+  "Muhammad Muchlish": {
+    "password": "90004",
+    "sandi": "Ewy"
+  },
+  "Muhammad Nurul Afiq": {
+    "password": "00001",
+    "sandi": "jr6"
+  },
+  "Muhammad Wildan Ashidiqi": {
+    "password": "90001",
+    "sandi": "1aO"
+  },
+  "Nambi Hanca Hayana": {
+    "password": "20006",
+    "sandi": "g1g"
+  },
+  "Nazla": {
+    "password": "80006",
+    "sandi": "Mb0"
+  },
+  "Nugi Ibnu Saputra": {
+    "password": "10001",
+    "sandi": "69r"
+  },
+  "Putra Abdul Aziz": {
+    "password": "60005",
+    "sandi": "Oxg"
+  },
+  "Qaanitah Hasmaulia": {
+    "password": "30001",
+    "sandi": "goK"
+  },
+  "Rahmad Rivaldi Hasudungan": {
+    "password": "80006",
+    "sandi": "zwA"
+  },
+  "Rangga Amrullah": {
+    "password": "10003",
+    "sandi": "z3k"
+  },
+  "Renaldi Wirayuda": {
+    "password": "40002",
+    "sandi": "FqX"
+  },
+  "Reza Oktavia": {
+    "password": "80001",
+    "sandi": "U8q"
+  },
+  "Riski Tutut Prihatin": {
+    "password": "00002",
+    "sandi": "O90"
+  },
+  "Rizky Ramadani": {
+    "password": "00014",
+    "sandi": "XkT"
+  },
+  "Rizky Wahyudi Joko Wibowo": {
+    "password": "20010",
+    "sandi": "KIt"
+  },
+  "Safa Yasmin Safitri": {
+    "password": "20006",
+    "sandi": "LDv"
+  },
+  "Satria Wira Buana": {
+    "password": "00003",
+    "sandi": "5Q7"
+  },
+  "Satrio Wibowo": {
+    "password": "40003",
+    "sandi": "3iC"
+  },
+  "Syahid Ali Adamiri": {
+    "password": "10003",
+    "sandi": "oVw"
+  },
+  "Tedi Ariyana": {
+    "password": "10003",
+    "sandi": "ROG"
+  },
+  "Tsaqif Farros": {
+    "password": "30001",
+    "sandi": "hcj"
+  },
+  "Udi isomudin": {
+    "password": "10004",
+    "sandi": "opY"
+  },
+  "Ullyah": {
+    "password": "80007",
+    "sandi": "y4v"
+  },
+  "Umyati": {
+    "password": "70001",
+    "sandi": "NBm"
+  },
+  "Virsha Shofiyani": {
+    "password": "40005",
+    "sandi": "gur"
+  },
+  "Yoshua Vernanda Siahaan": {
+    "password": "70001",
+    "sandi": "sKL"
+  },
+  "Yoyok Budiawan": {
+    "password": "80001",
+    "sandi": "HW5"
+  }
+};
+
+    document.getElementById('sandiForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById('name').value.trim();
+      const passInput = document.getElementById('password').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (dataSurveyor[nameInput] && dataSurveyor[nameInput].password === passInput) {
+        resultDiv.textContent = `Sandi Anda: ${dataSurveyor[nameInput].sandi}`;
+      } else {
+        resultDiv.textContent = 'Nama atau 5 digit NIK tidak cocok.';
+      }
+    });
+  </script>
+</body>
+</html>
